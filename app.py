@@ -3,7 +3,7 @@ import mysql.connector
 import random
 import time
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
 def db_connection():
@@ -54,6 +54,10 @@ def publicar_tweet(tweet):
         connection = db_connection()
         cursor = connection.cursor()
         fecha_publicacion = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        fecha_publicacion_datetime = datetime.now() - timedelta(hours=5)
+        fecha_publicacion = fecha_publicacion_datetime.strftime("%Y-%m-%d %H:%M:%S")
+
         #cursor.execute("UPDATE tweets SET estado = 'posteado', fechaPost = %s WHERE id = %s",(fecha_publicacion, tweet_id))
         connection.commit()
         cursor.close()
@@ -66,11 +70,11 @@ def publicar_tweet(tweet):
 
 if __name__ == "__main__":
 
-    horas_ejecucion = ["14:00", "14:01", "14:02", "18:00", "18:01", "18:02", "00:00", "00:01", "00:02", "05:00"]
+    horas_ejecucion = ["14:20", "18:20", "00:20", "05:20"]
     hora_actual = datetime.now().strftime("%H:%M")
 
     if hora_actual in horas_ejecucion:
-        segundos = random.uniform(2 * 60, 7 * 60)
+        segundos = random.uniform(2 * 60, 5 * 60)
         time.sleep(segundos)
         load_dotenv()
         try:
