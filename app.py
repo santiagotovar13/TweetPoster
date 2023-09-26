@@ -70,11 +70,11 @@ def publicar_tweet(tweet):
 
 if __name__ == "__main__":
 
-    horas_ejecucion = ["14:20", "15:20", "18:20", "00:20", "05:20"]
+    horas_ejecucion = ["14:22", "15:22", "18:22", "00:22"]
     hora_actual = datetime.now().strftime("%H:%M")
 
     if hora_actual in horas_ejecucion:
-        segundos = random.uniform(2 * 60, 5 * 60)
+        segundos = random.uniform(1, 2 * 60)
         time.sleep(segundos)
         load_dotenv()
         try:
