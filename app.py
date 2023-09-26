@@ -64,10 +64,15 @@ def publicar_tweet(tweet):
 
 
 if __name__ == "__main__":
-    load_dotenv()
-    try:
-        tweet = obtener_tweet_aleatorio()
-        if tweet:
-            publicar_tweet(tweet)
-    except Exception as e:
-        print(f"Error al conectar a la base de datos: {e}")
+
+    horas_ejecucion = ["14:00", "14:01", "14:02", "18:00", "18:01", "18:02", "00:00", "00:01", "00:02", "05:00"]
+    hora_actual = datetime.now().strftime("%H:%M")
+
+    if hora_actual in horas_ejecucion:
+        load_dotenv()
+        try:
+            tweet = obtener_tweet_aleatorio()
+            if tweet:
+                publicar_tweet(tweet)
+        except Exception as e:
+            print(f"Error al conectar a la base de datos: {e}")
