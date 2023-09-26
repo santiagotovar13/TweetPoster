@@ -21,7 +21,6 @@ def obtener_tweet_aleatorio():
         conn = db_connection()
         cursor = conn.cursor()
 
-        # Obtener tweets aprobados y contar cuántos hay
         cursor.execute("SELECT id, contenido FROM tweets WHERE estado = 'aprobado'")
         tweets_aprobados = cursor.fetchall()
         total_tweets = len(tweets_aprobados)
@@ -30,7 +29,6 @@ def obtener_tweet_aleatorio():
             print("No hay tweets aprobados disponibles en la base de datos.")
             return None
 
-        # Seleccionar un tweet aleatorio
         random_tweet = random.choice(tweets_aprobados)
 
         cursor.close()
@@ -39,8 +37,6 @@ def obtener_tweet_aleatorio():
     except Exception as e:
         print(f"Error al obtener un tweet aleatorio: {e}")
         return None
-
-# Función para publicar el tweet en Twitter
 
 
 def publicar_tweet(tweet):
