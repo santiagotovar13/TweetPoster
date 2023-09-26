@@ -70,7 +70,7 @@ def publicar_tweet(tweet):
 
 if __name__ == "__main__":
 
-    horas_ejecucion = ["14:20", "18:20", "00:20", "05:20"]
+    horas_ejecucion = ["14:20", "15:20", "18:20", "00:20", "05:20"]
     hora_actual = datetime.now().strftime("%H:%M")
 
     if hora_actual in horas_ejecucion:
