@@ -1,6 +1,7 @@
 import tweepy
 import mysql.connector
 import random
+import time
 import os
 from datetime import datetime
 from dotenv import load_dotenv
@@ -53,7 +54,7 @@ def publicar_tweet(tweet):
         connection = db_connection()
         cursor = connection.cursor()
         fecha_publicacion = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        cursor.execute("UPDATE tweets SET estado = 'posteado', fechaPost = %s WHERE id = %s",(fecha_publicacion, tweet_id))
+        #cursor.execute("UPDATE tweets SET estado = 'posteado', fechaPost = %s WHERE id = %s",(fecha_publicacion, tweet_id))
         connection.commit()
         cursor.close()
 
@@ -69,6 +70,8 @@ if __name__ == "__main__":
     hora_actual = datetime.now().strftime("%H:%M")
 
     if hora_actual in horas_ejecucion:
+        segundos = random.uniform(2 * 60, 7 * 60)
+        time.sleep(segundos)
         load_dotenv()
         try:
             tweet = obtener_tweet_aleatorio()
