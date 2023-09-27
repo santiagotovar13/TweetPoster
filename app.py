@@ -58,7 +58,7 @@ def publicar_tweet(tweet):
         fecha_publicacion_datetime = datetime.now() - timedelta(hours=5)
         fecha_publicacion = fecha_publicacion_datetime.strftime("%Y-%m-%d %H:%M:%S")
 
-        #cursor.execute("UPDATE tweets SET estado = 'posteado', fechaPost = %s WHERE id = %s",(fecha_publicacion, tweet_id))
+        cursor.execute("UPDATE tweets SET estado = 'posteado', fechaPost = %s WHERE id = %s",(fecha_publicacion, tweet_id))
         connection.commit()
         cursor.close()
 
